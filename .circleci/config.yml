@@ -1,0 +1,9 @@
+anal_df <- data.frame(ds = sample_date$yyyymmdd, y = sample_dat$y)  -- ds 데이트, y 시계열 타겟
+
+model.fit <- prophet(df = anal_df, holidays = NULL, growth = 'linear', interval.width = 0.8)
+
+# 예측할 날짜
+future_df <- make_future_dataframe(model.fit, periods = 1)
+
+## 예측 (여기에 트렌드, 계절효과 등등 있음)
+forecast_df <- predict(model.fit, future_df)
